@@ -17,7 +17,9 @@
     	</ul>
     	<p>There will be no changes made to your <code>files</code>.</p>
     </p>
-    <button class="btn btn-primary float-right" type="button">Install</button>
+    <form method="POST" action="<?php echo url('/index.php?page=install/migrations'); ?>">
+        <button class="btn btn-primary float-right" type="submit">Install</button>
+    </form>
   </div>
 </div>
 </div>

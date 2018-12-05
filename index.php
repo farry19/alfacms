@@ -9,6 +9,9 @@ Config::initialize();
 use Core\App;
 use Core\Util\Installer;
 
+// Routing via GET i.e. ?page=something
+App::route();
+
 // Checking installation
 $installer = new Installer;
 if(!$installer->installed())
@@ -16,7 +19,7 @@ if(!$installer->installed())
 	$installer->install();
 }
 
-// Booting the theme
+// Boot up application with theme
 App::boot();
 
 

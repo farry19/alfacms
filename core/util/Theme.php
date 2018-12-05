@@ -9,7 +9,7 @@ class Theme
 	private $path;
 	private $disk;
 
-	function __construct($theme_path)
+	function __construct($theme_path = '')
 	{
 		$this->path = $theme_path;
 		$this->disk = new Disk(root() . '/disk');

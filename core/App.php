@@ -15,4 +15,16 @@ class App
 		echo $theme->render('page');
 	}
 
+	public static function route()
+	{
+		if(isset($_GET['page']))
+		{
+			$page = $_GET['page'];
+			$theme = new Theme();
+			echo $theme->render($page);
+			exit;
+		}
+		return;
+	}
+
 }

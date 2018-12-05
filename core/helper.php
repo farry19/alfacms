@@ -6,6 +6,11 @@
 $base_url = '';
 $root = '';
 
+function resolve($core_class, $constructor = NULL)
+{
+    return new $core_class($constructor);
+}
+
 function base($dir, $base)
 {
     global $base_url;

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Default</title>
-	<link href="<?php echo config('url'); ?>/disk/themes/default/css/bootstrap.css" rel="stylesheet"/>
+	<link href="<?php echo url(); ?>/disk/themes/default/css/bootstrap.css" rel="stylesheet"/>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">

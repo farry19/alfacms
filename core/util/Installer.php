@@ -9,12 +9,7 @@ class Installer
 
 	public function installed()
 	{
-		$bool = DB::default()->table('options')->exists();
-		if($bool)
-		{
-			return TRUE;
-		}
-		return FALSE;
+		return DB::default()->table('options')->exists();
 	}
 
 	public function install()

@@ -182,9 +182,7 @@ class MysqlTable Implements TableInterface {
         $response = DB::Query(MysqlTable::getQuery());
         MysqlTable::resetQueryBuilder();
         if($response['status']){
-            if ($res = mysqli_fetch_array($response['result'])){
-                return true;
-            }
+            return true;
         }
         return false;
     }

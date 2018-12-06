@@ -6,10 +6,21 @@ use Core\Config;
 
 class DB {
 
-	public static function default(){
-		if(Config::get('default_database') == 'mysql')
-			return new MysqlQuery;
-		return new MysqlQuery; // fallback
+    private static $instance;
+
+    private function __construct() {}
+
+    public static function getInstance() {
+
+        if(!isset(self::$instance)) {
+            if(Config::get('default_database')) {
+                self::$instance = __NAMESPACE__ . '\\' .ucfirst(Config::get('default_database')) . 'Query';
+            } else {
+                self::$instance = 'MysqlQuery';
+            }
+        }
+
+        return self::$instance;
 	}
 
 }

@@ -60,5 +60,6 @@ $query_string = 'create table media (
 
 $db->default()->query($query_string);
 
+
 header('Location: ' . url('/index.php?page=install/step-two'));
 exit;

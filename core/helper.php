@@ -11,6 +11,12 @@ function resolve($core_class, $constructor = NULL)
     return new $core_class($constructor);
 }
 
+function migrate($table, $structure_callback)
+{
+    $schema = resolve('\\Core\\Database\\DB')->schema();
+    $schema->create($table, $structure_callback);
+}
+
 function base($dir, $base)
 {
     global $base_url;

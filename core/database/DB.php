@@ -2,6 +2,7 @@
 namespace Core\Database;
 
 use Core\Database\MysqlQuery;
+use Core\Database\Migration\MysqlSchema;
 use Core\Config;
 
 class DB {
@@ -21,6 +22,13 @@ class DB {
         }
 
         return self::$instance;
+	}
+
+	public static function schema()
+	{
+		if(Config::get('default_database') == 'mysql')
+			return new MysqlSchema;
+		return new MysqlSchema; // fallback
 	}
 
 }

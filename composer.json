@@ -1,0 +1,21 @@
+{
+    "name": "AlfaCMS",
+    "description": "CMS",
+    "keywords": ["alfa", "cms"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core/"
+        },
+        "files": [
+            "Core\\helper.php"
+        ]
+    },
+    "scripts": {
+    }
+}

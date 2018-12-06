@@ -11,10 +11,16 @@ function resolve($core_class, $constructor = NULL)
     return new $core_class($constructor);
 }
 
-function migrate($table, $structure_callback)
+function migrate($table, $query_string)
 {
-    $schema = resolve('\\Core\\Database\\DB')->schema();
-    $schema->create($table, $structure_callback);
+    $schema = \Core\Database\DB::schema();
+    $schema->create($table, $query_string);
+}
+
+function seed($table, $query_string)
+{
+    $schema = \Core\Database\DB::query();
+    $schema->query($table, $query_string);
 }
 
 function base($dir, $base)
@@ -50,6 +56,11 @@ function dd($data)
     var_dump($data);
     echo '</pre>';
     exit;
+}
+
+function redirect($url = '/')
+{
+    header('Location: ' . url($url));
 }
 
 function match($string, $condition, $recursive = FALSE)

@@ -9,7 +9,7 @@ class Installer
 
 	public function installed()
 	{
-		return DB::default()->table('options')->exists();
+		return DB::query()->table('options')->exists();
 	}
 
 	public function install()

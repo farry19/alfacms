@@ -1,11 +1,11 @@
 <?php
 
 migrate('options', function($table) {
-	$table->increments('id');
-	$table->string('name');
-	$table->string('value');
+    $table->increments('id');
+    $table->string('name');
+    $table->string('value');
 
-	$table->timestamps();
+    $table->timestamps();
 });
 
 migrate('items', function($table) {
@@ -15,7 +15,6 @@ migrate('items', function($table) {
     $table->unsignedInteger('image_id')->nullable();
     $table->unsignedInteger('category_id')->nullable();
     $table->unsignedInteger('user_id');
-    $table->enum('status', ['draft', 'unpublished', 'published'])->default('draft');
 
     $table->timestamps();
 });
@@ -62,7 +61,7 @@ migrate('role_permissions', function($table) {
     $table->increments('id');
     $table->unsignedInteger('role_id');
     $table->unsignedInteger('permission_id');
-    $table->enum('status', ['active', 'inactive'])->default('active');
+    $table->enum(['active', 'inactive'])->default('active');
 
     $table->timestamps();
 });

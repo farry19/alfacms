@@ -6,21 +6,21 @@ interface TableInterface {
 
 	public function getLastQuery();
 
-    public function with($table,$joinType);
+    public function with($table, $join_type);
 
-    public function join($table,$joinType);
+    public function join($table, $join_type);
 
-    public function on($arrayOrColumnName, $columnValue, $conditionType);
+    public function on($array_or_column_name, $column_value, $condition_type);
 
-    public function select($queryString);
+    public function select($query_string);
 
-    public function orWhere($arrayOrColumnName, $columnValue);
+    public function orWhere($array_or_column_name, $column_value);
 
-    public function andWhere($arrayOrColumnName, $columnValue);
+    public function andWhere($array_or_column_name, $column_value);
 
-    public function where($arrayOrColumnName, $columnValue, $conditionType);
+    public function where($array_or_column_name, $column_value, $condition_type);
 
-    public function whereRaw($arrayOrColumnName, $columnValue, $conditionType);
+    public function whereRaw($array_or_column_name, $column_value, $condition_type);
 
     public function orderBy($columns,$order);
 

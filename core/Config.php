@@ -12,12 +12,11 @@ class Config
 	{
 		$disk = new Disk(root());
 		$lines = $disk->readLines('.env');
-		foreach($lines as $line)
-		{
-			if(trim($line) != '')
-			{
+
+		foreach($lines as $line) {
+			if(trim($line) != '') {
 				$temp = explode('=', $line);
-				self::set($temp[0], trim($temp[1], "\n"));
+				self::set($temp[0], trim($temp[1]));
 			}
 		}
 	}
@@ -29,8 +28,8 @@ class Config
 
 	public static function has($name)
 	{
-		if(isset(self::$configs[$name]))
-			return TRUE;
+		if(isset(self::$configs[$name])) return TRUE;
+
 		return FALSE;
 	}
 
@@ -39,7 +38,8 @@ class Config
 		if(isset(self::$configs[$name])){
 			return self::$configs[$name];
 		}
-		return '';
+
+		return NULL;
 	}
 
 }

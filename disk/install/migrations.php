@@ -1,16 +1,13 @@
 <?php
 
-$db = resolve('\\Core\\Database\\DB');
-
-$queryString = '
-create table options (
-	id INT(11) primary key auto_increment NOT NULL,
-	name varchar(255) NOT NULL,
-	value varchar(255)
-);';
-$db->default()->query($queryString);
+migrate('options', function($table){
+	$table->increments('id');
+	$table->string('name');
+	$table->string('value');
+});
 
 // TODO: add all other database tables
+// @farrukh, can you please takecare of tables?
 
 header('Location: ' . url('/index.php?page=install/step-two'));
 exit;

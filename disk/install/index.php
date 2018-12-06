@@ -1,4 +1,4 @@
-<link href="<?php echo url(); ?>/admin/css/bootstrap.css" rel="stylesheet">
+<link href="url:admin/css/bootstrap.css" rel="stylesheet">
 <div class="container">
 <div class="card" style="margin-top: 10px;">
   <div class="card-body">
@@ -17,7 +17,7 @@
     	</ul>
     	<p>There will be no changes made to your <code>files</code>.</p>
     </p>
-    <form method="POST" action="<?php echo url('/index.php?page=install/migrations'); ?>">
+    <form method="POST" action="index.php?page=install/migrations">
         <button class="btn btn-primary float-right" type="submit">Install</button>
     </form>
   </div>

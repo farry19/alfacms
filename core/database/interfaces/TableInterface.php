@@ -2,31 +2,29 @@
 
 namespace Core\Database\Interfaces;
 
-interface TableInterface {
-
+interface TableInterface
+{
 	public function getLastQuery();
 
-    public function with($table,$joinType);
+    public function with($table, $join_type);
 
-    public function join($table,$joinType);
+    public function join($table, $join_type);
 
-    public function on($arrayOrColumnName, $columnValue, $conditionType);
+    public function on($array_or_column_name, $column_value, $condition_type);
 
-    public function select($queryString);
+    public function select($query_string);
 
-    public function orWhere($arrayOrColumnName, $columnValue);
+    public function orWhere($array_or_column_name, $column_value);
 
-    public function andWhere($arrayOrColumnName, $columnValue);
+    public function where($array_or_column_name, $column_value, $condition_type);
 
-    public function where($arrayOrColumnName, $columnValue, $conditionType);
+    public function whereRaw($array_or_column_name, $column_value, $condition_type);
 
-    public function whereRaw($arrayOrColumnName, $columnValue, $conditionType);
-
-    public function orderBy($columns,$order);
+    public function orderBy($columns, $order);
 
     public function groupBy($columns);
 
-    public function limit($start,$length);
+    public function limit($start, $length);
 
     public function exists();
 
@@ -36,14 +34,13 @@ interface TableInterface {
 
     public function first();
 
-    public function insert($dataArray);
+    public function insert($data_array);
 
-    public function update($dataArray, $matchArray);
+    public function update($data_array, $match_array);
 
-    public function delete($matchArray);
+    public function delete($match_array);
 
     public function getPK();
 
     public function truncate();
-	
 }

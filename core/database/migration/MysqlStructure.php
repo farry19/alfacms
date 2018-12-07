@@ -77,10 +77,4 @@ class MysqlStructure implements StructureInterface
 
         return $this;
     }
-
-    /*
-     * `status` ENUM('draft','un','pu','') NOT NULL DEFAULT 'draft' ,
-     * `time` TIMESTAMP on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-     */
-
 }

@@ -10,8 +10,8 @@ interface QueryInterface {
 
 	public static function close();
 
-	public static function query($querystring);
+	public static function query($query_string);
 
-	public static function table($tableName);
+	public static function table($table_name);
 	
 }

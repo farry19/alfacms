@@ -1,12 +1,11 @@
 <?php
+
 namespace Core\Database;
 
-use Core\Database\MysqlQuery;
-use Core\Database\Migration\MysqlSchema;
 use Core\Config;
+use Core\Database\Migration\MysqlSchema;
 
 class DB {
-
     private static $instance;
 
     private function __construct() {}
@@ -21,7 +20,6 @@ class DB {
             } else {
                 self::$instance = new MysqlQuery;
             }
-
         }
 
         return self::$instance;
@@ -37,7 +35,6 @@ class DB {
             } else {
                 self::$instance = new MysqlSchema;
             }
-
         }
 
         return self::$instance;

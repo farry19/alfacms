@@ -2,8 +2,8 @@
 
 namespace Core\Database\Interfaces;
 
-interface TableInterface {
-
+interface TableInterface
+{
 	public function getLastQuery();
 
     public function with($table, $join_type);
@@ -16,17 +16,15 @@ interface TableInterface {
 
     public function orWhere($array_or_column_name, $column_value);
 
-    public function andWhere($array_or_column_name, $column_value);
-
     public function where($array_or_column_name, $column_value, $condition_type);
 
     public function whereRaw($array_or_column_name, $column_value, $condition_type);
 
-    public function orderBy($columns,$order);
+    public function orderBy($columns, $order);
 
     public function groupBy($columns);
 
-    public function limit($start,$length);
+    public function limit($start, $length);
 
     public function exists();
 
@@ -36,14 +34,13 @@ interface TableInterface {
 
     public function first();
 
-    public function insert($dataArray);
+    public function insert($data_array);
 
-    public function update($dataArray, $matchArray);
+    public function update($data_array, $match_array);
 
-    public function delete($matchArray);
+    public function delete($match_array);
 
     public function getPK();
 
     public function truncate();
-	
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace Core\Database\Migration;
 
 use Core\Database\Migration\Interfaces\SchemaInterface;
@@ -14,8 +15,6 @@ class MysqlSchema implements SchemaInterface
 
 		$structure($new_structure);
 		$query = $new_structure->get();
-
-//		dd("CREATE TABLE {$table} ({$query})");
 
 		MysqlQuery::query("CREATE TABLE {$table} ({$query})");
 	}

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Installation</title>
-	<link href="url:admin/css/bootstrap.css" rel="stylesheet">
+	<link href="/admin/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -43,18 +43,18 @@
     					<option value="/themes/default">Default</option>
     					
     					<!-- Loading theme model -->
-    					@php
+    					<?php 
     					$themes = resolve('\\Models\\Theme')::all();
-    					@endphp
+    					 ?>
 
     					<!-- Populating avaiable/active themes -->
-    					@if($themes)
-	    					@foreach($themes as $theme)
-	    						@if($theme->status == 'active')
-		    						<option value="{{$theme->path}}"> {{$theme->name}} </option>
-	    						@endif
-	    					@endforeach
-    					@endif
+    					<?php if($themes){ ?>
+	    					<?php foreach($themes as $theme){ ?>
+	    						<?php if($theme->status == 'active'){ ?>
+		    						<option value="<?php echo $theme->path; ?>"> <?php echo $theme->name; ?> </option>
+	    						<?php } ?>
+	    					<?php } ?>
+    					<?php } ?>
 
     				</select>
   				</div>

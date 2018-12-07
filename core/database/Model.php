@@ -20,6 +20,11 @@ class Model extends DB {
 		return self::default()->table(self::getTableName())->get();
 	}
 
+	public static function create($data)
+	{
+		return self::default()->table(self::getTableName())->insert($data);	
+	}
+
 	public static function first(){
 		return self::default()->table(self::getTableName())->first();
 	}

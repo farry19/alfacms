@@ -79,16 +79,19 @@ class Theme
 		$output = str_replace("@endphp", ' ?>', $output);
 		if(!$renderable)
 			return $output;
+
+		$ext = explode('.', $file);
+		$filename = $ext[0];
+		$extension = $ext[1];
+		$new_filename = $filename . '-rendered.' . $extension;
+		$file_handle = fopen($new_filename ,"w");
+		fwrite($file_handle, $output);
+		fclose($file_handle);
+
+		ob_start();
+		include_once $new_filename;
+		$output = ob_get_clean();
 		return $output;
-
-		// $file = fopen($actualFile ,"w");
-		// fwrite($file,$output);
-		// fclose($file);
-
-		// ob_start();
-		// include_once $actualFile;
-		// $output = ob_get_clean();
-		// return $output;
 	}
 
 }

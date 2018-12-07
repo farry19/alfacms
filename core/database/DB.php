@@ -5,12 +5,17 @@ namespace Core\Database;
 use Core\Config;
 use Core\Database\Migration\MysqlSchema;
 
-class DB {
+class DB
+{
+
     private static $instance;
 
-    private function __construct() {}
-
-	public static function query()
+    // @farrukh please do not change function names without asking
+    // it has been used in all over, secondly "query" name is not fit
+    // as it will be repeating as MysqlQuery instance also have method
+    // query, so it will be like DB::query->query('select * from ...');
+    // for now please refactor logic or variable names, avoid functions
+	public static function default()
 	{
 	    $class = __NAMESPACE__ . '\\' . ucfirst(Config::get('default_database')) . 'Query';
 

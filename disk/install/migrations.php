@@ -8,23 +8,24 @@ migrate('options', function($table) {
 	$table->timestamps();
 });
 
-migrate('items', function($table) {
-    $table->increments('id');
+migrate('pages', function($table) {
+    $table->increments('id');    
     $table->string('title');
+    $table->string('slug');
     $table->text('body');
-    $table->unsignedInteger('image_id')->nullable();
-    $table->unsignedInteger('category_id')->nullable();
-    $table->unsignedInteger('user_id');
+    $table->text('script');
+    $table->text('css');
     $table->enum('status', ['draft', 'unpublished', 'published'])->default('draft');
 
     $table->timestamps();
 });
 
-migrate('categories', function($table) {
+migrate('menus', function($table) {
     $table->increments('id');
     $table->string('name');
-    $table->string('description');
-    $table->unsignedInteger('user_id');
+    $table->string('slug');
+    $table->unsignedInteger('menu_id')->default(-1);
+    $table->unsignedInteger('page_id')->nullable();
 
     $table->timestamps();
 });
@@ -42,10 +43,20 @@ migrate('users', function($table) {
     $table->timestamps();
 });
 
+migrate('themes', function($table) {
+    $table->increments('id');
+    $table->string('name');
+    $table->string('slug');
+    $table->string('path');
+    $table->enum('status', ['active', 'inactive', 'outdated'])->default('inactive');
+
+    $table->timestamps();
+});
+
 migrate('roles', function($table) {
     $table->increments('id');
     $table->string('name');
-    $table->string('description');
+    $table->string('slug');
 
     $table->timestamps();
 });
@@ -53,7 +64,7 @@ migrate('roles', function($table) {
 migrate('permissions', function($table) {
     $table->increments('id');
     $table->string('name');
-    $table->string('description');
+    $table->string('slug');
 
     $table->timestamps();
 });
@@ -62,7 +73,6 @@ migrate('role_permissions', function($table) {
     $table->increments('id');
     $table->unsignedInteger('role_id');
     $table->unsignedInteger('permission_id');
-    $table->enum('status', ['active', 'inactive'])->default('active');
 
     $table->timestamps();
 });

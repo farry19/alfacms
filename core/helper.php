@@ -11,6 +11,12 @@ function resolve($core_class, $constructor = NULL)
     return new $core_class($constructor);
 }
 
+function route($page)
+{
+    $theme = \Core\Util\Theme();
+    $theme->redner($page);
+}
+
 function migrate($table, $query_string)
 {
     $schema = \Core\Database\DB::schema();

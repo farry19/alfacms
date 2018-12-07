@@ -1,10 +1,8 @@
 <?php
 
-namespace Core\Database\Migration;
+namespace Core\Database;
 
 use Core\Database\Migration\Interfaces\SchemaInterface;
-use Core\Database\Migration\MysqlStructure;
-use Core\Database\MysqlQuery;
 
 class MysqlSchema implements SchemaInterface
 {

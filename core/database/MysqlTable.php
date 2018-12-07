@@ -232,9 +232,11 @@ class MysqlTable Implements TableInterface
 
         if ($data_array) {
             foreach ($data_array as $key => $value) {
-                $columns .= "{$key}, ";
-                $values .= "{$value}, ";
+                $columns .= "`{$key}`, ";
+                $values .= "'{$value}', ";
             }
+
+//            dd("insert into `" . $this->table_name . "` (" . rtrim($columns, ', ') . ") values (" . rtrim($values, ', ') . ");");
             DB::Query("insert into `" . $this->table_name . "` (" . rtrim($columns, ', ') . ") values (" . rtrim($values, ', ') . ");");
 
             $id = @mysqli_insert_id();

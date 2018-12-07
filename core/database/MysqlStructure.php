@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Database\Migration;
+namespace Core\Database;
 
 use Core\Database\Migration\Interfaces\StructureInterface;
 

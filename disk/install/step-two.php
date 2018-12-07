@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="card" style="margin-top: 10px;">
 		  <div class="card-body">
-		  	<form method="POST" action="<?php echo url('install/seeding.php'); ?>">
+		  	<form method="POST" action="<?php echo url('index.php?page=install/seeding'); ?>">
 			    <h5 class="card-title">Installation - Step 2</h5>
 			    <p class="card-text">
 			    	<p>All <code>database tables</code> are migrated successfully.</p>

@@ -10,32 +10,32 @@ class DB {
 
     private function __construct() {}
 
-	public static function query()
-	{
-	    $class = __NAMESPACE__ . '\\' . ucfirst(Config::get('default_database')) . 'Query';
+//	public static function query()
+//	{
+//	    $class = __NAMESPACE__ . '\\' . ucfirst(Config::get('default_database')) . 'Query';
+//
+//        if(self::$instance == null) {
+//            if(Config::get('default_database')) {
+//                self::$instance = new $class;
+//            } else {
+//                self::$instance = new MysqlQuery;
+//            }
+//        }
+//
+//        return self::$instance;
+//	}
 
-        if(self::$instance == null) {
-            if(Config::get('default_database')) {
-                self::$instance = new $class;
-            } else {
-                self::$instance = new MysqlQuery;
-            }
-        }
-
-        return self::$instance;
-	}
-
-	public static function schema()
+	public static function getInstance($type = 'Query', $table = null)
     {
-        $class = __NAMESPACE__ . '\\' . ucfirst(Config::get('default_database')) . 'Schema';
+        $class = __NAMESPACE__ . '\\Mysql' . ucfirst($type);
 
         if(self::$instance == null) {
             if(Config::get('default_database')) {
-                self::$instance = new $class;
-            } else {
-                self::$instance = new MysqlSchema;
+                $class = __NAMESPACE__ . '\\' .Config::get('default_database') . $type;
             }
         }
+
+        self::$instance = $table != null ? new $class($table) : new $class;
 
         return self::$instance;
     }

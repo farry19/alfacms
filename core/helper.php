@@ -13,14 +13,14 @@ function resolve($core_class, $constructor = NULL)
 
 function migrate($table, $query_string)
 {
-    $schema = \Core\Database\DB::schema();
+    $schema = \Core\Database\DB::getInstance('schema');
     $schema->create($table, $query_string);
 }
 
 function seed($table, $query_string)
 {
-    $schema = \Core\Database\DB::query();
-    $schema->query($table, $query_string);
+    $schema = \Core\Database\DB::getInstance('table', $table);
+    $schema->insert($query_string);
 }
 
 function base($dir, $base)

@@ -4,6 +4,14 @@ namespace Core;
 use Core\Util\Theme;
 use Core\Config;
 
+// App Class
+// This app class is entry point to the front-end user's application
+// it also implements theme & routing for now.
+// TODO:
+// 1. This app class requires a interface
+// 2. App class should be made intelligent to throw up errors if something went wrong
+// 3. Class should be capable of caching frequently used values either from db or env
+// 4. Need to some how introduce cache clear functionality.
 class App
 {
 

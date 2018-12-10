@@ -20,6 +20,18 @@
     				<input type="text" class="form-control" name="app_name" placeholder="i.e. MyFirstApp">
   				</div>
   				<div class="form-group">
+    				<label>Your Name</label>
+    				<input type="text" class="form-control" name="name" placeholder="Admin Name">
+  				</div>
+  				<div class="form-group">
+    				<label>Your Email</label>
+    				<input type="text" class="form-control" name="email" placeholder="Admin Email">
+  				</div>
+  				<div class="form-group">
+    				<label>Your Password</label>
+    				<input type="password" class="form-control" name="password">
+  				</div>
+  				<div class="form-group">
     				<label>Application Type <code>(You will not be able to change this later on)</code></label>
     				<div class="form-check">
 						<input class="form-check-input position-static" type="radio" name="app_type" value="blog" > Blog

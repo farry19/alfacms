@@ -54,7 +54,7 @@ class MysqlStructure implements StructureInterface
     {
         $default_values = "'" . implode("', '", $default_values) . "'";
 
-        $this->query = "{$column} ENUM ({$default_values}), ";
+        $this->query .= "{$column} ENUM ({$default_values}), ";
 
         return $this;
     }

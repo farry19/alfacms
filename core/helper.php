@@ -51,8 +51,10 @@ function url($link = '')
     return $base_url.$link;
 }
 
-function config($key)
-{
+function config($key, $value = NULL)
+{   
+    if($value != NULL)
+        \Core\Config::set($key, $value);
 	return \Core\Config::get($key);
 }
 

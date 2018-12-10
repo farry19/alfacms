@@ -16,7 +16,7 @@
 			    	<p>Now you can either view your application or login as admin ot manage it</p>
 
 			    	<button class="btn btn-primary">Login</button>
-			    	<button class="btn btn-secondary">Visit Website</button>
+			    	<a href="url:" class="btn btn-secondary">Visit Website</a>
 		    </form>
 		</div>
 	</div>

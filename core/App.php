@@ -11,7 +11,15 @@ class App
 
 	public static function boot()
 	{
-		$theme = new Theme('themes/default/');
+		// @farrukh, can you find a way to cache these options
+		// and only hit database once new options are required,
+		// rather hitting every time.
+		$options = resolve('\\Models\\Option')->all();
+		foreach($options as $option){
+			config('option_'.$option->name, $option->value);
+		}
+		// Loading theme
+		$theme = new Theme(config('option_app_theme'));
 		echo $theme->render('page');
 	}
 

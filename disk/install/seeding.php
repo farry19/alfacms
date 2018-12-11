@@ -95,4 +95,4 @@ foreach($permissions as $permission){
 }
 
 // redirect after settings & seeding
-redirect('/index.php?page=install/step-three');
+redirect('/?target=install&page=step-three');

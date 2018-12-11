@@ -14,9 +14,6 @@ use Core\Util\Installer;
 // over website functionality for navigations (GET, POST, PUT, PATCH, DELETE)
 // not to mention, plugins development.
 
-// Routing via GET i.e. ?page=something
-App::route();
-
 // Checking installation
 // NOTE: installer is currently only checktion for existance of
 // one table named "options"
@@ -26,6 +23,9 @@ if(!$installer->installed())
 {
 	$installer->install();
 }
+
+// Routing via GET i.e. ?page=something
+App::route();
 
 // Boot up application with theme
 App::boot();

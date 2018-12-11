@@ -8,7 +8,8 @@ use Core\Database\Migration\MysqlSchema;
 class DB
 {
 
-    private static $instance;
+    private static $database_instance;
+    private static $schema_instance;
 
     // @farrukh please do not change function names without asking
     // it has been used in all over, secondly "query" name is not fit
@@ -17,32 +18,34 @@ class DB
     // for now please refactor logic or variable names, avoid functions
 	public static function default()
 	{
-	    $class = __NAMESPACE__ . '\\' . ucfirst(Config::get('default_database')) . 'Query';
-
-        if(self::$instance == null) {
-            if(Config::get('default_database')) {
-                self::$instance = new $class;
-            } else {
-                self::$instance = new MysqlQuery;
+        // @farrukh
+        // Let's not optimize these lines
+        // there arise many issues, as names in env could be really differ from actual
+        // class names in future as well, so we can't rely on mapping it directly to classes
+        // i.e.
+        // what if env variables changes from DB_DEFAULT=MYSQL to sequel-database
+        // or what if we require to rename our class MysqlQuery to something else?
+        // in all these cases, your old implementation causes problems.
+        // Let's stick to current implementation now
+        if(Config::get('DB_DEFAULT') == 'MYSQL'){
+            if(self::$database_instance == null) {
+                self::$database_instance = new \Core\Database\MysqlQuery;
             }
+            return self::$database_instance;
         }
-
-        return self::$instance;
+        return new \Core\Database\MysqlQuery; // default fallback
 	}
 
 	public static function schema()
     {
-        $class = __NAMESPACE__ . '\\' . ucfirst(Config::get('default_database')) . 'Schema';
-
-        if(self::$instance == null) {
-            if(Config::get('default_database')) {
-                self::$instance = new $class;
-            } else {
-                self::$instance = new MysqlSchema;
+        // Same goes for these lines, please read instructions from above method
+        if(Config::get('DB_DEFAULT') == 'MYSQL'){
+            if(self::$schema_instance == null) {
+                self::$schema_instance = new \Core\Database\Migration\MysqlSchema;
             }
+            return self::$schema_instance;
         }
-
-        return self::$instance;
+        return new \Core\Database\Migration\MysqlSchema; // default fallback
     }
 
 }

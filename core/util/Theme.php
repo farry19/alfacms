@@ -1,23 +1,19 @@
 <?php
 namespace Core\Util;
 
-use Core\Util\Disk;
-
 class Theme
 {
 
 	private $path;
-	private $disk;
 
 	function __construct($theme_path = '')
 	{
 		$this->path = $theme_path;
-		$this->disk = new Disk(root() . '/disk');
 	}
 
 	public function render($file)
 	{
-		return $this->parse('disk/' . $this->path . $file . '.php');
+		return $this->parse($this->path . $file . '.php');
 	}
 
 	public function parse($file, $data = null, $renderable = true) {
@@ -83,7 +79,7 @@ class Theme
 		$ext = explode('.', $file);
 		$filename = $ext[0];
 		$extension = $ext[1];
-		$new_filename = $filename . '-rendered.' . $extension;
+		$new_filename = $filename . '.ren';
 		$file_handle = fopen($new_filename ,"w");
 		fwrite($file_handle, $output);
 		fclose($file_handle);

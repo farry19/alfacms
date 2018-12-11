@@ -18,25 +18,38 @@ class App
 	private static $configs = [];
 
 	public static function boot()
+	{		
+		// Simply redirect to selected theme's default page
+		redirect('/?target=theme&page=page');
+	}
+
+	public static function route()
 	{
 		// @farrukh, can you find a way to cache these options
 		// and only hit database once new options are required,
 		// rather hitting every time.
 		$options = resolve('\\Models\\Option')->all();
-		foreach($options as $option){
-			config('option_'.$option->name, $option->value);
+		if($options){
+			foreach($options as $option){
+				config('option_'.$option->name, $option->value);
+			}
 		}
-		// Loading theme
-		$theme = new Theme(config('option_app_theme'));
-		echo $theme->render('page');
-	}
 
-	public static function route()
-	{
-		if(isset($_GET['page']))
+		if(isset($_GET['target']) && isset($_GET['page']))
 		{
+			$target = $_GET['target'];
+
+			// @farrukh, this logic can be improved
+			// NOTE: always test all scenarios once you do refactoring!!!
+			if($target == 'theme')
+				$target = 'disk/' . config('option_app_theme');
+			if($target == 'install')
+				$target = 'disk/install/';
+			if($target == 'admin')
+				$target = 'admin/pages/';
+			
 			$page = $_GET['page'];
-			$theme = new Theme();
+			$theme = new Theme($target . '/');
 			echo $theme->render($page);
 			exit;
 		}

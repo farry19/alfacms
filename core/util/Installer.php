@@ -14,9 +14,9 @@ class Installer
 
 	public function install()
 	{
-		$theme = new Theme('install/');
-		echo $theme->render('index');
-		exit;
+		//ignore if target is install
+		if(!isset($_GET['target']) && $_GET['target'] != 'install')
+			redirect('/?target=install&page=index');
 	}
 
 }

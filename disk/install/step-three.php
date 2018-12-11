@@ -15,8 +15,8 @@
 			    	<code>NOTE: please delete install folder from /disk/ directory</code>
 			    	<p>Now you can either view your application or login as admin ot manage it</p>
 
-			    	<button class="btn btn-primary">Login</button>
-			    	<a href="url:" class="btn btn-secondary">Visit Website</a>
+			    	<a href="/?target=admin&page=login" class="btn btn-primary">Login</a>
+			    	<a href="/" class="btn btn-secondary">Visit Website</a>
 		    </form>
 		</div>
 	</div>

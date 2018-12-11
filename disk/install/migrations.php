@@ -76,4 +76,4 @@ migrate('role_permissions', function($table) {
     $table->timestamps();
 });
 
-redirect('/index.php?page=install/step-two');
+redirect('/?target=install&page=step-two');

@@ -11,12 +11,12 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="/?target=admin&page=controllers/login" method="POST">
       <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-      <label for="inputEmail" class="sr-only">Email</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <label class="sr-only">Email</label>
+      <input name="email" type="email" class="form-control" placeholder="Email address" required autofocus>
+      <label class="sr-only">Password</label>
+      <input name="password" type="password" class="form-control" placeholder="Password" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
       <p class="mt-5 mb-3 text-muted">AlpfaCMS&copy; 2018-2020</p>
     </form>

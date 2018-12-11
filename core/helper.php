@@ -69,6 +69,7 @@ function dd($data)
 function redirect($url = '/')
 {
     header('Location: ' . url($url));
+    exit;
 }
 
 function match($string, $condition, $recursive = FALSE)

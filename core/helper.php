@@ -6,6 +6,56 @@
 $base_url = '';
 $root = '';
 
+// Session global helpers
+session_start();
+function session($key, $value = NULL)
+{
+    // Get session
+    if($value == NULL)
+        return $_SESSION[$key];
+    // Set session
+    $_SESSION[$key] = $value;
+}
+
+function sessionHas($key)
+{
+    if(isset($_SESSION[$key]))
+        return true;
+    return false;
+}
+
+function sessionFlush()
+{
+    session_destroy();
+}
+
+// tiny controllers mapper
+function requestMap($request_names, $class)
+{
+    $class_instance = new $class();
+    if(is_array($request_names))
+    {
+        foreach($request_names as $request)
+        {
+            if(method_exists($class_instance, $request) && $_GET['request'] == $request)
+            {
+                // Grab all GETS & POSTS
+                $request_object = new \StdClass;
+                foreach($_POST as $key => $value)
+                {
+                    $request_object->$key = $value;
+                }
+                foreach($_GET as $key => $value)
+                {
+                    $request_object->$key = $value;
+                }
+                echo $class_instance->$request($request_object);
+                exit;
+            }
+        }
+    }
+}
+
 function resolve($core_class, $constructor = NULL)
 {
     return new $core_class($constructor);
@@ -70,6 +120,37 @@ function redirect($url = '/')
 {
     header('Location: ' . url($url));
     exit;
+}
+
+function get($name)
+{
+    return $_GET[$name];
+}
+
+function view($name, $data = NULL, $type = 'admin')
+{
+    $controllerName = explode('/', $_GET['page']);
+    $currentRoute = $controllerName[1] . '@' . $_GET['request'];   
+    //echo config('BASE').'/index.php?target='.$type.'&page='.$name.'&route=' . $currentRoute . '&data=' . base64_encode(json_encode($data)); 
+    $output = file_get_contents(config('BASE').'/index.php?target='.$type.'&page='.$name.'&route=' . $currentRoute . '&data=' . urlencode(json_encode($data)));
+    //exit;
+    echo $output;
+    exit;
+}
+
+function to($name, $request)
+{
+    return '/?target=admin&page=controllers/'.$name.'&request='.$request;
+}
+
+function controller($name, $request)
+{
+    redirect('/?target=admin&page=controllers/'.$name.'&request='.$request);
+}
+
+function redirectPage($name, $type = 'admin')
+{
+    redirect('/?target='.$type.'&page='.$name);
 }
 
 function match($string, $condition, $recursive = FALSE)

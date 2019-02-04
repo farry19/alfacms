@@ -17,6 +17,20 @@ class Theme
 	}
 
 	public function parse($file, $data = null, $renderable = true) {
+
+		// Data 
+		//echo $file . '<br/>';		
+		if(isset($_GET['data'])){
+			$data = json_decode(urldecode($_GET['data']));
+			//var_dump(json_decode(urldecode($_GET['data'])));
+			if($data != NULL){
+				foreach($data as $key => $value){
+					//echo $key;
+					$$key = $value;
+				}
+			}
+		}
+
 		$output = '';
 		ob_start();
 		include_once $file;
@@ -33,7 +47,7 @@ class Theme
         $output = str_replace("url:", url('') ."/", $output);
         if(is_array($includes)){
 	        foreach($includes as $inc){
-	        	$output = str_replace("@include(".$inc.")", self::view($inc,null,false), $output);
+	        	$output = str_replace("@include(".$inc.")", self::parse($this->path . $inc . '.php',null,false), $output);
 			}
 		}
 	    if(is_array($phpIf)){

@@ -1,4 +1,8 @@
 <?php
+if (!file_exists('vendor/autoload.php' )){
+	echo "Please run command `composer install` from console.";
+	exit;
+}
 require 'vendor/autoload.php';
 
 // Basic configurations
